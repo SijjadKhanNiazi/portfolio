@@ -218,7 +218,7 @@ export const portfolioData = {
     {
       id: "cryptopulse",
       title: "CryptoPulse Engine",
-      image: "..//../public/crypto.jfif",
+      image: "/crypto.jfif",
       subtitle: "Scalable Metrics Layer & Load-Tested Architecture",
       category: "Backend & DevOps",
       featured: true,
@@ -256,7 +256,7 @@ export const portfolioData = {
     {
       id: "clics",
       title: "CLICS",
-      image: "..//../public/CLICS.png",
+      image: "/CLICS.png",
       subtitle: "Centralized Loan Information & Comparison System",
       category: "Full-Stack & GenAI",
       featured: true,
@@ -292,7 +292,7 @@ export const portfolioData = {
     {
       id: "studenthub",
       title: "StudentHub",
-      image: "..//../public/std.png",
+      image: "/std.png",
       subtitle: "Mianwali Students Academic & Resource Hub",
       category: "Next.js Full-Stack",
       featured: true,
@@ -318,7 +318,7 @@ export const portfolioData = {
     {
       id: "elite-sci",
       title: "Elite Science Academy Portal",
-      image: "..//../public/ESA.png",
+      image: "/ESA.png",
       subtitle: "Educational Institution & Registration Platform",
       category: "MERN Web Portal",
       featured: false,
@@ -344,7 +344,7 @@ export const portfolioData = {
     {
       id: "agriconnect",
       title: "AgriConnect",
-      image: "..//../public/agri.png",
+      image: "/agri.png",
       subtitle: "Digital Agriculture Marketplace Concept",
       category: "Marketplace Web App",
       featured: false,
@@ -370,7 +370,7 @@ export const portfolioData = {
     {
       id: "productify",
       title: "Productify",
-      image: "..//../public/productify.png",
+      image: "/productify.png",
       subtitle: "Task & Workflow Productivity App",
       category: "Productivity",
       featured: false,
@@ -397,7 +397,7 @@ export const portfolioData = {
     {
       id: "ai-interview",
       title: "AI Interview Coach & Career Journal",
-      image: "..//../public/Ai.png",
+      image: "/Ai.png",
       subtitle: "NLP-Powered Resume Analysis & Mock Prep",
       category: "AI & NLP Workflow",
       featured: false,
