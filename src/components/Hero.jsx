@@ -1,5 +1,10 @@
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import {
   ArrowUpRight,
   Download,
@@ -76,7 +81,8 @@ function AnimatedRightCard({ current, idx, setIdx }) {
             LIVE TELEMETRY
           </div>
           <div className="text-[10px] font-mono text-slate-500">
-            <span className="text-[#ff9a52] font-semibold">0{idx + 1}</span> / 0{ANIMATED_DETAILS.length}
+            <span className="text-[#ff9a52] font-semibold">0{idx + 1}</span> / 0
+            {ANIMATED_DETAILS.length}
           </div>
         </div>
 
@@ -136,9 +142,13 @@ function AnimatedRightCard({ current, idx, setIdx }) {
       <div className="flex items-center justify-between px-3.5 py-2 rounded-xl bg-[#0c0a09]/75 border border-white/[0.07] backdrop-blur-md">
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
-          <span className="text-[10px] font-mono text-slate-300">Fast Response: &lt; 24h</span>
+          <span className="text-[10px] font-mono text-slate-300">
+            Fast Response: &lt; 24h
+          </span>
         </div>
-        <span className="text-[9px] font-mono text-slate-500">Remote / Global</span>
+        <span className="text-[9px] font-mono text-slate-500">
+          Remote / Global
+        </span>
       </div>
     </div>
   );
@@ -178,7 +188,8 @@ function DeveloperHUDCard() {
           </span>
         </h2>
         <p className="text-[11px] text-slate-400 leading-relaxed">
-          High-throughput APIs, reactive web interfaces, and production RAG pipelines designed to scale.
+          High-throughput APIs, reactive web interfaces, and production RAG
+          pipelines designed to scale.
         </p>
       </div>
 
@@ -240,7 +251,10 @@ export default function Hero() {
   const [telemetryIdx, setTelemetryIdx] = useState(0);
 
   useEffect(() => {
-    const t = setInterval(() => setTelemetryIdx((i) => (i + 1) % ANIMATED_DETAILS.length), 2800);
+    const t = setInterval(
+      () => setTelemetryIdx((i) => (i + 1) % ANIMATED_DETAILS.length),
+      2800,
+    );
     return () => clearInterval(t);
   }, []);
 
@@ -263,7 +277,7 @@ export default function Hero() {
     const rect = e.currentTarget.getBoundingClientRect();
     setMousePos({
       x: ((e.clientX - rect.left) / rect.width) * 100,
-      y: ((e.clientY - rect.top)  / rect.height) * 100,
+      y: ((e.clientY - rect.top) / rect.height) * 100,
     });
   };
 
@@ -291,7 +305,8 @@ export default function Hero() {
       <div
         className="absolute inset-0 pointer-events-none z-[2]"
         style={{
-          background: "linear-gradient(to top, #090807 0%, #090807 6%, rgba(9,8,7,0.55) 28%, transparent 60%)",
+          background:
+            "linear-gradient(to top, #090807 0%, #090807 6%, rgba(9,8,7,0.55) 28%, transparent 60%)",
         }}
       />
       {/* Side vignettes */}
@@ -304,17 +319,15 @@ export default function Hero() {
         className="absolute inset-x-0 top-[6%] sm:top-[12%] lg:top-[15%] flex items-center justify-center pointer-events-none select-none overflow-hidden z-[3] px-2"
         aria-hidden="true"
       >
-        <span className="text-[17vw] sm:text-[14vw] lg:text-[13vw] font-black tracking-[0.08em] sm:tracking-[0.12em] uppercase whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-b from-white/[0.08] via-white/[0.30] to-transparent leading-none">
+        <span className="text-[14vw] sm:text-[13vw] lg:text-[12vw] font-black tracking-[0.04em] sm:tracking-[0.08em] uppercase whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-b from-white/[0.08] via-white/[0.25] to-transparent leading-none">
           SIJJAD KHAN
         </span>
       </motion.div>
 
       {/* ── 4. Main content flex area ───────────────────────────────────── */}
       <div className="relative z-10 flex-1 flex flex-col justify-between">
-
         {/* ── Top Visual Stage: Portrait is BIG, commanding, and unobstructed ── */}
         <div className="relative w-full h-[52vh] sm:h-[60vh] lg:h-[76vh] min-h-[390px] sm:min-h-[480px] lg:min-h-[560px] flex items-end justify-center">
-
           {/* Portrait — anchored bottom-center, scales big and proud */}
           <motion.div
             style={{ y: yPortrait, scale: scalePortrait }}
@@ -343,7 +356,11 @@ export default function Hero() {
             style={{ y: cardsY, opacity: cardsOpacity }}
             initial={{ opacity: 0, x: -25, filter: "blur(6px)" }}
             animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            transition={{
+              duration: 0.7,
+              delay: 0.15,
+              ease: [0.22, 1, 0.36, 1],
+            }}
             className="hidden lg:block absolute bottom-8 left-8 xl:left-14 z-[20] w-[320px] xl:w-[340px] max-w-[340px]"
           >
             <DeveloperHUDCard />
@@ -354,7 +371,11 @@ export default function Hero() {
             style={{ y: cardsY, opacity: cardsOpacity }}
             initial={{ opacity: 0, x: 25, filter: "blur(6px)" }}
             animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            transition={{
+              duration: 0.7,
+              delay: 0.25,
+              ease: [0.22, 1, 0.36, 1],
+            }}
             className="hidden lg:flex absolute bottom-8 right-8 xl:right-14 z-[20] w-[320px] xl:w-[340px] max-w-[340px] flex-col gap-2.5"
           >
             <AnimatedRightCard
@@ -369,7 +390,9 @@ export default function Hero() {
             style={{ opacity: cardsOpacity }}
             className="absolute bottom-2 sm:bottom-3 left-1/2 -translate-x-1/2 z-[25] hidden sm:flex flex-col items-center gap-1 cursor-pointer group select-none"
             onClick={() => {
-              const el = document.getElementById("about") || document.getElementById("projects");
+              const el =
+                document.getElementById("about") ||
+                document.getElementById("projects");
               el?.scrollIntoView({ behavior: "smooth" });
             }}
           >
@@ -379,13 +402,21 @@ export default function Hero() {
             <div className="w-5 h-8 rounded-full border border-white/20 group-hover:border-[#ff6b2c]/60 flex items-start justify-center p-1 backdrop-blur-sm transition-colors duration-200">
               <motion.div
                 animate={{ y: [0, 12, 0], opacity: [0.4, 1, 0.4] }}
-                transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 1.8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
                 className="w-1.5 h-1.5 rounded-full bg-[#ff6b2c] shadow-[0_0_8px_#ff6b2c]"
               />
             </div>
             <motion.div
               animate={{ y: [0, 3, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
             >
               <ChevronDown className="w-3.5 h-3.5 text-slate-500 group-hover:text-[#ff6b2c] transition-colors duration-200" />
             </motion.div>
@@ -413,11 +444,15 @@ export default function Hero() {
                 transition={{ delay: 0.5 + i * 0.05, duration: 0.4 }}
                 className="p-2 sm:p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.07] backdrop-blur-md hover:border-[#ff6b2c]/50 hover:bg-white/[0.04] transition-all group cursor-default"
               >
-                <div className="text-[#ff6b2c] mb-0.5 font-mono text-[9px] sm:text-[10px] font-bold">{service.number}</div>
+                <div className="text-[#ff6b2c] mb-0.5 font-mono text-[9px] sm:text-[10px] font-bold">
+                  {service.number}
+                </div>
                 <div className="text-[10px] sm:text-[11px] font-semibold text-slate-200 group-hover:text-white transition-colors leading-snug">
                   {service.title}
                 </div>
-                <div className="text-[8px] sm:text-[9px] text-slate-500 mt-0.5 line-clamp-1">{service.desc}</div>
+                <div className="text-[8px] sm:text-[9px] text-slate-500 mt-0.5 line-clamp-1">
+                  {service.desc}
+                </div>
               </motion.div>
             ))}
           </div>
