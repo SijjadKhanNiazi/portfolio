@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #090807;
+  --bg-soft: #12100f;
+  --surface: #171412;
+  --surface-raised: #201a16;
+  --text: #f5f1ed;
+  --text-muted: #b9b0a9;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-focus: rgba(255, 107, 44, 0.5);
+  --accent: #ff6b2c;
+  --accent-soft: #ff9a52;
+  --glow: rgba(255, 107, 44, 0.28);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background-color: #090807;
+  color: #f5f1ed;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: #090807;
+  color: #f5f1ed;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #090807;
+}
+::-webkit-scrollbar-thumb {
+  background: #27221d;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff6b2c;
+}
+
+/* Marquee / Ticker Keyframes */
+@keyframes ticker-slide {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes ticker-slide-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-ticker {
+  display: flex;
+  width: max-content;
+  animation: ticker-slide 32s linear infinite;
+}
+
+.animate-ticker-reverse {
+  display: flex;
+  width: max-content;
+  animation: ticker-slide-reverse 35s linear infinite;
+}
+
+.animate-ticker:hover,
+.animate-ticker-reverse:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ticker,
+  .animate-ticker-reverse {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* Ambient Radial Gradients */
+.radial-glow-hero {
+  background: radial-gradient(circle 480px at center, rgba(255, 107, 44, 0.16) 0%, rgba(154, 52, 18, 0.08) 50%, transparent 80%);
+}
+
+.radial-glow-subtle {
+  background: radial-gradient(circle 350px at center, rgba(255, 107, 44, 0.08) 0%, transparent 70%);
+}
+
+/* Glass Card */
+.glass-panel {
+  background: rgba(23, 20, 18, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel:hover {
+  border-color: rgba(255, 107, 44, 0.35);
+}
+
+/* Code & Mono */
+.font-mono-code {
+  font-family: 'JetBrains Mono', monospace;
+}
