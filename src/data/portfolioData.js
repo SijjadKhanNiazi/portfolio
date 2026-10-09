@@ -218,7 +218,7 @@ export const portfolioData = {
     {
       id: "cryptopulse",
       title: "CryptoPulse Engine",
-      image: "..//../public/",
+      image: "..//../public/crypto.jfif",
       subtitle: "Scalable Metrics Layer & Load-Tested Architecture",
       category: "Backend & DevOps",
       featured: true,
@@ -397,7 +397,7 @@ export const portfolioData = {
     {
       id: "ai-interview",
       title: "AI Interview Coach & Career Journal",
-      image: "..//../public/",
+      image: "..//../public/Ai.png",
       subtitle: "NLP-Powered Resume Analysis & Mock Prep",
       category: "AI & NLP Workflow",
       featured: false,

@@ -60,32 +60,18 @@ const ANIMATED_DETAILS = [
   },
 ];
 
-function AnimatedRightPanel({ style }) {
-  const [idx, setIdx] = useState(0);
-
-  useEffect(() => {
-    const t = setInterval(() => setIdx((i) => (i + 1) % ANIMATED_DETAILS.length), 2800);
-    return () => clearInterval(t);
-  }, []);
-
-  const current = ANIMATED_DETAILS[idx];
+function AnimatedRightCard({ current, idx, setIdx }) {
   const IconComponent = current.icon;
 
   return (
-    <motion.div
-      style={style}
-      initial={{ opacity: 0, x: 25, filter: "blur(6px)" }}
-      animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-      transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-      className="absolute bottom-6 sm:bottom-8 right-4 sm:right-8 lg:right-14 z-[20] w-[calc(100%-2rem)] sm:w-[320px] lg:w-[340px] max-w-[340px] hidden md:flex flex-col gap-2.5"
-    >
+    <div className="w-full flex flex-col gap-2.5">
       <div className="relative overflow-hidden rounded-2xl border border-white/[0.09] bg-[#0c0a09]/85 backdrop-blur-2xl p-4 sm:p-5 shadow-[0_20px_50px_rgba(0,0,0,0.85)] group hover:border-[#ff6b2c]/40 transition-colors duration-300">
         {/* Accent top gradient bar */}
-        <div className="h-px bg-gradient-to-r from-transparent via-amber-400/70 to-[#ff6b2c] mb-3.5" />
+        <div className="h-px bg-gradient-to-r from-transparent via-amber-400/70 to-[#ff6b2c] mb-3 sm:mb-3.5" />
 
         {/* Header with Telemetry live pulse and counter */}
-        <div className="flex items-center justify-between gap-2 mb-3">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono text-slate-300">
+        <div className="flex items-center justify-between gap-2 mb-2.5 sm:mb-3">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[9px] sm:text-[10px] font-mono text-slate-300">
             <span className="w-1.5 h-1.5 rounded-full bg-[#ff6b2c] animate-pulse" />
             LIVE TELEMETRY
           </div>
@@ -95,7 +81,7 @@ function AnimatedRightPanel({ style }) {
         </div>
 
         {/* Cycling Animated Content */}
-        <div className="min-h-[82px] flex flex-col justify-center">
+        <div className="min-h-[76px] sm:min-h-[82px] flex flex-col justify-center">
           <AnimatePresence mode="wait">
             <motion.div
               key={idx}
@@ -114,7 +100,7 @@ function AnimatedRightPanel({ style }) {
                   {current.stat}
                 </span>
               </div>
-              <p className="text-base font-bold text-white leading-tight">
+              <p className="text-sm sm:text-base font-bold text-white leading-tight">
                 {current.title}
               </p>
               <p className="text-[11px] text-slate-400 leading-snug">
@@ -125,7 +111,7 @@ function AnimatedRightPanel({ style }) {
         </div>
 
         {/* Cycling Progress Indicator Dots */}
-        <div className="flex items-center gap-1.5 pt-3 mt-3 border-t border-white/[0.06]">
+        <div className="flex items-center gap-1.5 pt-2.5 sm:pt-3 mt-2.5 sm:mt-3 border-t border-white/[0.06]">
           {ANIMATED_DETAILS.map((_, i) => (
             <button
               key={i}
@@ -133,7 +119,7 @@ function AnimatedRightPanel({ style }) {
               onClick={() => setIdx(i)}
               className={`h-1 rounded-full transition-all duration-300 ${
                 i === idx
-                  ? "w-7 bg-gradient-to-r from-[#ff6b2c] to-amber-400 shadow-[0_0_10px_rgba(255,107,44,0.6)]"
+                  ? "w-6 sm:w-7 bg-gradient-to-r from-[#ff6b2c] to-amber-400 shadow-[0_0_10px_rgba(255,107,44,0.6)]"
                   : "w-2 bg-white/20 hover:bg-white/40"
               }`}
               aria-label={`Slide ${i + 1}`}
@@ -154,7 +140,95 @@ function AnimatedRightPanel({ style }) {
         </div>
         <span className="text-[9px] font-mono text-slate-500">Remote / Global</span>
       </div>
-    </motion.div>
+    </div>
+  );
+}
+
+function DeveloperHUDCard() {
+  return (
+    <div className="w-full relative overflow-hidden rounded-2xl border border-white/[0.09] bg-[#0c0a09]/85 backdrop-blur-2xl p-4 sm:p-5 shadow-[0_20px_50px_rgba(0,0,0,0.85)] group hover:border-[#ff6b2c]/40 transition-colors duration-300">
+      {/* Glowing accent border line */}
+      <div className="h-px bg-gradient-to-r from-[#ff6b2c] via-amber-400/70 to-transparent mb-3 sm:mb-3.5" />
+
+      {/* Top meta badges */}
+      <div className="flex items-center justify-between gap-2 mb-2.5 sm:mb-3">
+        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-[10px] font-mono text-emerald-400">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+          </span>
+          AVAILABLE FOR HIRE
+        </div>
+        <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-400/10 border border-amber-400/20 text-[9px] font-mono text-amber-300">
+          <Award className="w-3 h-3 text-amber-400" />
+          CGPA 3.75
+        </div>
+      </div>
+
+      {/* Title & Tagline */}
+      <div className="space-y-1 mb-3 sm:mb-4">
+        <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#ff9a52] uppercase tracking-[0.16em]">
+          <Terminal className="w-3 h-3 text-[#ff6b2c]" />
+          Full-Stack &amp; GenAI Architect
+        </div>
+        <h2 className="text-base sm:text-lg font-black text-white leading-snug">
+          Building Scalable Systems &amp;{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff9a52] to-[#ff6b2c]">
+            Intelligent AI Apps
+          </span>
+        </h2>
+        <p className="text-[11px] text-slate-400 leading-relaxed">
+          High-throughput APIs, reactive web interfaces, and production RAG pipelines designed to scale.
+        </p>
+      </div>
+
+      {/* Action Buttons */}
+      <div className="flex items-center gap-2 pt-1 mb-3">
+        <a
+          href="#projects"
+          className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-r from-[#ff6b2c] to-[#ea580c] hover:from-[#ff7c43] hover:to-[#f97316] text-white text-xs font-semibold shadow-[0_0_20px_rgba(255,107,44,0.35)] hover:shadow-[0_0_25px_rgba(255,107,44,0.55)] transition-all duration-200 active:scale-95"
+        >
+          <span>Explore Work</span>
+          <ArrowUpRight className="w-3.5 h-3.5" />
+        </a>
+
+        <a
+          href="https://wa.me/923144913624?text=Hi%20Sijjad%2C%20I%27d%20like%20to%20discuss%20a%20project."
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Direct WhatsApp Message"
+          className="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] hover:border-white/20 text-slate-200 hover:text-white text-xs font-medium backdrop-blur-md transition-all duration-200 active:scale-95"
+        >
+          <MessageCircle className="w-3.5 h-3.5 text-[#ff9a52]" />
+          <span>Talk</span>
+        </a>
+
+        <a
+          href="/cv.pdf"
+          download="Muhammad_Sijjad_Khan_CV.pdf"
+          aria-label="Download CV"
+          className="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] hover:border-[#ff6b2c]/40 text-[#ff9a52] hover:text-[#ffb17a] text-xs font-medium backdrop-blur-md transition-all duration-200 active:scale-95"
+        >
+          <Download className="w-3.5 h-3.5" />
+          <span>CV</span>
+        </a>
+      </div>
+
+      {/* Tech Stack pills */}
+      <div className="flex flex-wrap items-center gap-1.5 pt-2 border-t border-white/[0.06]">
+        {["Next.js", "LangChain", "Redis", "Docker"].map((stack) => (
+          <span
+            key={stack}
+            className="px-2 py-0.5 rounded-md bg-white/[0.03] border border-white/[0.06] text-[9px] font-mono text-slate-400"
+          >
+            {stack}
+          </span>
+        ))}
+        <span className="text-[9px] font-mono text-[#ff6b2c]/80 ml-auto">
+          10Pearls &amp; Flyrank
+        </span>
+      </div>
+    </div>
   );
 }
 
@@ -163,6 +237,14 @@ export default function Hero() {
   const heroRef = useRef(null);
 
   const [mousePos, setMousePos] = useState({ x: 50, y: 45 });
+  const [telemetryIdx, setTelemetryIdx] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setTelemetryIdx((i) => (i + 1) % ANIMATED_DETAILS.length), 2800);
+    return () => clearInterval(t);
+  }, []);
+
+  const currentTelemetry = ANIMATED_DETAILS[telemetryIdx];
 
   // ── Scroll-linked parallax transforms ─────────────────────────────────────
   const { scrollYProgress } = useScroll({
@@ -213,143 +295,74 @@ export default function Hero() {
         }}
       />
       {/* Side vignettes */}
-      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#090807] to-transparent pointer-events-none z-[2]" />
-      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#090807] to-transparent pointer-events-none z-[2]" />
+      <div className="absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-[#090807] to-transparent pointer-events-none z-[2]" />
+      <div className="absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-[#090807] to-transparent pointer-events-none z-[2]" />
 
       {/* ── 3. Giant background name watermark with scroll parallax ─────── */}
       <motion.div
         style={{ y: yWatermark, opacity: opacityWatermark }}
-        className="absolute inset-x-0 top-[12%] sm:top-[15%] flex items-center justify-center pointer-events-none select-none overflow-hidden z-[3]"
+        className="absolute inset-x-0 top-[6%] sm:top-[12%] lg:top-[15%] flex items-center justify-center pointer-events-none select-none overflow-hidden z-[3] px-2"
         aria-hidden="true"
       >
-        <span className="text-[16vw] sm:text-[14vw] lg:text-[13vw] font-black tracking-[0.12em] uppercase whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-b from-white/[0.06] via-white/[0.30] to-transparent leading-none">
+        <span className="text-[17vw] sm:text-[14vw] lg:text-[13vw] font-black tracking-[0.08em] sm:tracking-[0.12em] uppercase whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-b from-white/[0.08] via-white/[0.30] to-transparent leading-none">
           SIJJAD KHAN
         </span>
       </motion.div>
 
       {/* ── 4. Main content flex area ───────────────────────────────────── */}
-      <div className="relative z-10 flex-1 flex flex-col">
+      <div className="relative z-10 flex-1 flex flex-col justify-between">
 
-        {/* Portrait + side panels — takes up ~75% of viewport height */}
-        <div className="relative w-full" style={{ height: "75vh" }}>
+        {/* ── Top Visual Stage: Portrait is BIG, commanding, and unobstructed ── */}
+        <div className="relative w-full h-[52vh] sm:h-[60vh] lg:h-[76vh] min-h-[390px] sm:min-h-[480px] lg:min-h-[560px] flex items-end justify-center">
 
-          {/* Portrait — anchored bottom-center with scroll parallax */}
+          {/* Portrait — anchored bottom-center, scales big and proud */}
           <motion.div
             style={{ y: yPortrait, scale: scalePortrait }}
-            initial={{ opacity: 0, scale: 0.97, y: 20 }}
+            initial={{ opacity: 0, scale: 0.96, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 h-full flex items-end justify-center z-[10] pointer-events-none select-none"
+            className="absolute bottom-0 left-1/2 -translate-x-1/2 h-full w-full max-w-full flex items-end justify-center z-[10] pointer-events-none select-none"
           >
             {/* Warm backlight blob behind portrait */}
-            <div className="absolute top-8 left-1/2 -translate-x-1/2 w-[360px] sm:w-[480px] lg:w-[560px] h-[360px] sm:h-[480px] lg:h-[560px] bg-gradient-to-b from-[#ff6b2c]/30 via-[#c2410c]/16 to-transparent rounded-full blur-[100px] pointer-events-none z-[4]" />
+            <div className="absolute top-2 sm:top-8 left-1/2 -translate-x-1/2 w-[280px] sm:w-[440px] lg:w-[560px] h-[280px] sm:h-[440px] lg:h-[560px] bg-gradient-to-b from-[#ff6b2c]/35 via-[#c2410c]/18 to-transparent rounded-full blur-[70px] sm:blur-[100px] pointer-events-none z-[4]" />
             {/* Spotlight ring */}
-            <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[300px] sm:w-[420px] lg:w-[480px] h-[300px] sm:h-[420px] lg:h-[480px] rounded-full border border-[#ff6b2c]/20 shadow-[0_0_60px_rgba(255,107,44,0.12)] pointer-events-none z-[4]" />
+            <div className="absolute top-6 sm:top-12 left-1/2 -translate-x-1/2 w-[240px] sm:w-[380px] lg:w-[480px] h-[240px] sm:h-[380px] lg:h-[480px] rounded-full border border-[#ff6b2c]/25 shadow-[0_0_50px_rgba(255,107,44,0.15)] pointer-events-none z-[4]" />
 
+            {/* The Big Prominent Hero Image */}
             <img
               src="/hero.png"
               alt="Portrait of Muhammad Sijjad Khan"
-              className="relative z-[10] h-full w-auto object-contain object-bottom drop-shadow-[0_30px_50px_rgba(0,0,0,0.98)]"
+              className="relative z-[10] h-full w-auto max-w-[94vw] sm:max-w-[85vw] lg:max-w-none object-contain object-bottom drop-shadow-[0_25px_50px_rgba(0,0,0,0.98)] select-none scale-105 sm:scale-100"
               loading="eager"
               draggable={false}
             />
           </motion.div>
 
-          {/* ── Left-bottom redesigned developer HUD card ──────────────── */}
+          {/* ── DESKTOP ONLY: Left-bottom redesigned developer HUD card ── */}
           <motion.div
             style={{ y: cardsY, opacity: cardsOpacity }}
             initial={{ opacity: 0, x: -25, filter: "blur(6px)" }}
             animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute bottom-6 sm:bottom-8 left-4 sm:left-8 lg:left-14 z-[20] w-[calc(100%-2rem)] sm:w-[320px] lg:w-[340px] max-w-[340px]"
+            className="hidden lg:block absolute bottom-8 left-8 xl:left-14 z-[20] w-[320px] xl:w-[340px] max-w-[340px]"
           >
-            <div className="relative overflow-hidden rounded-2xl border border-white/[0.09] bg-[#0c0a09]/85 backdrop-blur-2xl p-4 sm:p-5 shadow-[0_20px_50px_rgba(0,0,0,0.85)] group hover:border-[#ff6b2c]/40 transition-colors duration-300">
-              {/* Glowing accent border line */}
-              <div className="h-px bg-gradient-to-r from-[#ff6b2c] via-amber-400/70 to-transparent mb-3.5" />
-
-              {/* Top meta badges */}
-              <div className="flex items-center justify-between gap-2 mb-3">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-[10px] font-mono text-emerald-400">
-                  <span className="relative flex h-1.5 w-1.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
-                  </span>
-                  AVAILABLE FOR HIRE
-                </div>
-                <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-400/10 border border-amber-400/20 text-[9px] font-mono text-amber-300">
-                  <Award className="w-3 h-3 text-amber-400" />
-                  CGPA 3.75
-                </div>
-              </div>
-
-              {/* Title & Tagline */}
-              <div className="space-y-1 mb-4">
-                <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#ff9a52] uppercase tracking-[0.16em]">
-                  <Terminal className="w-3 h-3 text-[#ff6b2c]" />
-                  Full-Stack &amp; GenAI Architect
-                </div>
-                <h2 className="text-base sm:text-lg font-black text-white leading-snug">
-                  Building Scalable Systems &amp;{" "}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff9a52] to-[#ff6b2c]">
-                    Intelligent AI Apps
-                  </span>
-                </h2>
-                <p className="text-[11px] text-slate-400 leading-relaxed">
-                  High-throughput APIs, reactive web interfaces, and production RAG pipelines designed to scale.
-                </p>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex items-center gap-2 pt-1 mb-3">
-                <a
-                  href="#projects"
-                  className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-r from-[#ff6b2c] to-[#ea580c] hover:from-[#ff7c43] hover:to-[#f97316] text-white text-xs font-semibold shadow-[0_0_20px_rgba(255,107,44,0.35)] hover:shadow-[0_0_25px_rgba(255,107,44,0.55)] transition-all duration-200 active:scale-95"
-                >
-                  <span>Explore Work</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </a>
-
-                <a
-                  href="https://wa.me/923144913624?text=Hi%20Sijjad%2C%20I%27d%20like%20to%20discuss%20a%20project."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Direct WhatsApp Message"
-                  className="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] hover:border-white/20 text-slate-200 hover:text-white text-xs font-medium backdrop-blur-md transition-all duration-200 active:scale-95"
-                >
-                  <MessageCircle className="w-3.5 h-3.5 text-[#ff9a52]" />
-                  <span>Talk</span>
-                </a>
-
-                <a
-                  href="/cv.pdf"
-                  download="Muhammad_Sijjad_Khan_CV.pdf"
-                  aria-label="Download CV"
-                  className="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] hover:border-[#ff6b2c]/40 text-[#ff9a52] hover:text-[#ffb17a] text-xs font-medium backdrop-blur-md transition-all duration-200 active:scale-95"
-                >
-                  <Download className="w-3.5 h-3.5" />
-                  <span>CV</span>
-                </a>
-              </div>
-
-              {/* Tech Stack pills */}
-              <div className="flex flex-wrap items-center gap-1.5 pt-2 border-t border-white/[0.06]">
-                {["Next.js", "LangChain", "Redis", "Docker"].map((stack) => (
-                  <span
-                    key={stack}
-                    className="px-2 py-0.5 rounded-md bg-white/[0.03] border border-white/[0.06] text-[9px] font-mono text-slate-400"
-                  >
-                    {stack}
-                  </span>
-                ))}
-                <span className="text-[9px] font-mono text-[#ff6b2c]/80 ml-auto">
-                  10Pearls &amp; Flyrank
-                </span>
-              </div>
-            </div>
+            <DeveloperHUDCard />
           </motion.div>
 
-          {/* ── Right-bottom animated telemetry details panel ──────────── */}
-          <AnimatedRightPanel style={{ y: cardsY, opacity: cardsOpacity }} />
+          {/* ── DESKTOP ONLY: Right-bottom animated telemetry details panel ── */}
+          <motion.div
+            style={{ y: cardsY, opacity: cardsOpacity }}
+            initial={{ opacity: 0, x: 25, filter: "blur(6px)" }}
+            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="hidden lg:flex absolute bottom-8 right-8 xl:right-14 z-[20] w-[320px] xl:w-[340px] max-w-[340px] flex-col gap-2.5"
+          >
+            <AnimatedRightCard
+              current={currentTelemetry}
+              idx={telemetryIdx}
+              setIdx={setTelemetryIdx}
+            />
+          </motion.div>
 
           {/* ── Center-bottom animated scroll indicator ─────────────────── */}
           <motion.div
@@ -379,22 +392,32 @@ export default function Hero() {
           </motion.div>
         </div>
 
+        {/* ── MOBILE & TABLET ONLY: Stacked Cards Container below Portrait ── */}
+        <div className="lg:hidden w-full max-w-md mx-auto px-4 sm:px-6 flex flex-col gap-3.5 mt-3 sm:mt-5 z-[20] relative">
+          <DeveloperHUDCard />
+          <AnimatedRightCard
+            current={currentTelemetry}
+            idx={telemetryIdx}
+            setIdx={setTelemetryIdx}
+          />
+        </div>
+
         {/* ── 5. Bottom service badge strip ───────────────────────────── */}
-        <div className="relative z-20 px-4 sm:px-8 lg:px-16 pb-4">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 pt-4 border-t border-white/[0.06] max-w-7xl mx-auto w-full">
+        <div className="relative z-20 px-3 sm:px-6 lg:px-14 pb-4 pt-4 sm:pt-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-2.5 border-t border-white/[0.06] pt-4 max-w-7xl mx-auto w-full">
             {heroServiceCards.map((service, i) => (
               <motion.div
                 key={service.number}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 + i * 0.06, duration: 0.4 }}
-                className="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.07] backdrop-blur-md hover:border-[#ff6b2c]/50 hover:bg-white/[0.04] transition-all group cursor-default"
+                transition={{ delay: 0.5 + i * 0.05, duration: 0.4 }}
+                className="p-2 sm:p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.07] backdrop-blur-md hover:border-[#ff6b2c]/50 hover:bg-white/[0.04] transition-all group cursor-default"
               >
-                <div className="text-[#ff6b2c] mb-0.5 font-mono text-[10px] font-bold">{service.number}</div>
-                <div className="text-[11px] font-semibold text-slate-300 group-hover:text-white transition-colors leading-snug">
+                <div className="text-[#ff6b2c] mb-0.5 font-mono text-[9px] sm:text-[10px] font-bold">{service.number}</div>
+                <div className="text-[10px] sm:text-[11px] font-semibold text-slate-200 group-hover:text-white transition-colors leading-snug">
                   {service.title}
                 </div>
-                <div className="text-[9px] text-slate-600 mt-0.5 line-clamp-1">{service.desc}</div>
+                <div className="text-[8px] sm:text-[9px] text-slate-500 mt-0.5 line-clamp-1">{service.desc}</div>
               </motion.div>
             ))}
           </div>
@@ -402,11 +425,11 @@ export default function Hero() {
           {/* ── Scrolling chip ticker ─────────────────────────────────── */}
           <div className="w-full overflow-hidden mt-3 pt-3 border-t border-white/[0.05]">
             <div className="flex overflow-hidden select-none [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-              <div className="animate-ticker flex items-center gap-3 py-0.5">
+              <div className="animate-ticker flex items-center gap-2 sm:gap-3 py-0.5">
                 {heroChips.concat(heroChips).map((chip, idx) => (
                   <div
                     key={`${chip}-${idx}`}
-                    className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.07] text-[10px] font-medium text-slate-500 whitespace-nowrap hover:border-[#ff6b2c]/40 hover:text-slate-300 transition-colors"
+                    className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.07] text-[9px] sm:text-[10px] font-medium text-slate-400 whitespace-nowrap hover:border-[#ff6b2c]/40 hover:text-slate-200 transition-colors"
                     aria-hidden={idx >= heroChips.length ? "true" : undefined}
                   >
                     <span className="w-1 h-1 rounded-full bg-[#ff6b2c] flex-shrink-0" />
