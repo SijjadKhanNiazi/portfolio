@@ -61,7 +61,7 @@ const ACHIEVEMENT_META = [
     badge: { label: "IBM Certified", variant: "purple" },
     stat: null,
     verifyLabel: "View Certificate",
-    verifyHref: "https://coursera.org",
+    verifyHref: "https://coursera.org/share/6eacd6c3daf0d14193505cd3e9dfba45",
     featured: false,
   },
   {
@@ -75,7 +75,7 @@ const ACHIEVEMENT_META = [
     badge: { label: "AI Specialization", variant: "cyan" },
     stat: null,
     verifyLabel: "View Certificate",
-    verifyHref: "https://coursera.org",
+    verifyHref: "https://coursera.org/share/5bc266e9b6e29d4ae68f78026c06bf86",
     featured: false,
   },
   {
