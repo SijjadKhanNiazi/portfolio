@@ -31,8 +31,8 @@ const ACHIEVEMENT_META = [
     glowColor: "rgba(251,191,36,0.25)",
     badge: { label: "🥇 Gold Medal", variant: "gold" },
     stat: { value: "3.75", label: "CGPA · Top 1%" },
-    verifyLabel: "University Record",
-    verifyHref: "https://uomw.edu.pk",
+    verifyLabel: "Transcript",
+    verifyHref: "/transcript.jpeg",
     featured: true,
   },
   {
@@ -46,7 +46,8 @@ const ACHIEVEMENT_META = [
     badge: { label: "Top 6.7% Nation", variant: "orange" },
     stat: { value: "93.3%", label: "NSCT Percentile" },
     verifyLabel: "NTA Verified",
-    verifyHref: "https://nta.edu.pk",
+    verifyHref:
+      "https://www.hec.gov.pk/english/HECAnnouncements/Pages/NSCT-Result.aspx",
     featured: true,
   },
   {
@@ -199,7 +200,10 @@ function DetailModal({ item, meta, onClose }) {
 
         {/* Institution + year row */}
         <div className="flex items-center gap-3 mt-2 flex-wrap">
-          <span className="text-sm font-semibold" style={{ color: accentColor }}>
+          <span
+            className="text-sm font-semibold"
+            style={{ color: accentColor }}
+          >
             {item.institution}
           </span>
           <span className="text-xs font-mono text-slate-500 px-2 py-0.5 rounded-lg bg-white/[0.04] border border-white/[0.06]">
@@ -261,7 +265,10 @@ function HeroCard({ item, meta, index, onClick }) {
   const { Icon, iconBg, accentColor, glowColor, badge, stat } = meta;
 
   return (
-    <SpotlightCard accentColor={accentColor} className="col-span-1 md:col-span-2">
+    <SpotlightCard
+      accentColor={accentColor}
+      className="col-span-1 md:col-span-2"
+    >
       <motion.div
         initial={{ opacity: 0, y: 30, scale: 0.96 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -276,7 +283,9 @@ function HeroCard({ item, meta, index, onClick }) {
         {/* Large decorative bg icon */}
         <div
           className="absolute -right-8 -bottom-8 w-40 h-40 rounded-3xl opacity-[0.08] bg-gradient-to-br"
-          style={{ background: `linear-gradient(135deg, ${accentColor}, transparent)` }}
+          style={{
+            background: `linear-gradient(135deg, ${accentColor}, transparent)`,
+          }}
         />
         <div className="absolute -right-4 -bottom-4 opacity-[0.06]">
           <Icon className="w-36 h-36" style={{ color: accentColor }} />
@@ -319,9 +328,14 @@ function HeroCard({ item, meta, index, onClick }) {
             >
               {item.title}
             </h3>
-            <p className="text-sm font-semibold mt-0.5" style={{ color: accentColor }}>
+            <p
+              className="text-sm font-semibold mt-0.5"
+              style={{ color: accentColor }}
+            >
               {item.institution}
-              <span className="text-slate-500 font-mono ml-2 text-xs">· {item.year}</span>
+              <span className="text-slate-500 font-mono ml-2 text-xs">
+                · {item.year}
+              </span>
             </p>
             <p className="text-xs text-slate-400 leading-relaxed mt-2 max-w-lg">
               {item.desc}
@@ -351,10 +365,16 @@ function HeroCard({ item, meta, index, onClick }) {
         {/* Bottom CTA hint */}
         <div className="relative z-10 mt-5 pt-4 border-t border-white/[0.06] flex items-center justify-between">
           <div className="flex items-center gap-1.5 text-xs text-slate-500">
-            <ShieldCheck className="w-3.5 h-3.5" style={{ color: accentColor }} />
+            <ShieldCheck
+              className="w-3.5 h-3.5"
+              style={{ color: accentColor }}
+            />
             <span>Verified credential</span>
           </div>
-          <div className="flex items-center gap-1 text-xs font-mono" style={{ color: accentColor }}>
+          <div
+            className="flex items-center gap-1 text-xs font-mono"
+            style={{ color: accentColor }}
+          >
             <span>View details</span>
             <ExternalLink className="w-3 h-3" />
           </div>
@@ -384,7 +404,9 @@ function StandardCard({ item, meta, index, onClick }) {
         {/* Decorative corner gradient */}
         <div
           className="absolute top-0 right-0 w-24 h-24 rounded-bl-full opacity-[0.07]"
-          style={{ background: `radial-gradient(circle at top right, ${accentColor}, transparent)` }}
+          style={{
+            background: `radial-gradient(circle at top right, ${accentColor}, transparent)`,
+          }}
         />
 
         {/* Top row: icon + badge */}
@@ -405,13 +427,19 @@ function StandardCard({ item, meta, index, onClick }) {
 
         {/* Content */}
         <div className="flex-1">
-          <div className="text-[10px] font-mono uppercase tracking-widest mb-1.5" style={{ color: accentColor }}>
+          <div
+            className="text-[10px] font-mono uppercase tracking-widest mb-1.5"
+            style={{ color: accentColor }}
+          >
             {item.tag}
           </div>
           <h3 className="text-base font-black text-white leading-snug group-hover:text-[#ff9a52] transition-colors">
             {item.title}
           </h3>
-          <p className="text-xs font-semibold mt-1" style={{ color: accentColor }}>
+          <p
+            className="text-xs font-semibold mt-1"
+            style={{ color: accentColor }}
+          >
             {item.institution}
           </p>
           <p className="text-xs text-slate-400 leading-relaxed mt-3">
@@ -421,7 +449,9 @@ function StandardCard({ item, meta, index, onClick }) {
 
         {/* Footer */}
         <div className="mt-5 pt-4 border-t border-white/[0.06] flex items-center justify-between">
-          <span className="text-[10px] font-mono text-slate-500">{item.year}</span>
+          <span className="text-[10px] font-mono text-slate-500">
+            {item.year}
+          </span>
           <div
             className="flex items-center gap-1 text-[10px] font-mono transition-opacity opacity-60 group-hover:opacity-100"
             style={{ color: accentColor }}
@@ -509,7 +539,9 @@ export default function Achievements() {
                 <div className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#ff9a52] to-amber-400">
                   {val}
                 </div>
-                <div className="text-[10px] font-mono text-slate-500 mt-0.5">{label}</div>
+                <div className="text-[10px] font-mono text-slate-500 mt-0.5">
+                  {label}
+                </div>
               </div>
             ))}
           </motion.div>
@@ -517,7 +549,6 @@ export default function Achievements() {
 
         {/* ── Bento grid ─────────────────────────────────────────────────────── */}
         <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-fr">
-
           {/* Hero cards — span 2 cols */}
           {heroCards.map(({ item, meta }, i) => (
             <HeroCard
@@ -573,8 +604,9 @@ export default function Achievements() {
         >
           <BadgeCheck className="w-3.5 h-3.5 text-[#ff6b2c] shrink-0" />
           <span>
-            All credentials are verified and maintained in the official institutional or platform records.
-            Click any card to view full details.
+            All credentials are verified and maintained in the official
+            institutional or platform records. Click any card to view full
+            details.
           </span>
         </motion.div>
       </div>
