@@ -286,7 +286,7 @@ export default function Hero() {
       id="home"
       ref={heroRef}
       onMouseMove={handleMouseMove}
-      className="relative w-full min-h-[calc(100vh-64px)] flex flex-col justify-between overflow-hidden bg-[#090807] isolate"
+      className="relative w-full min-h-screen pt-16 sm:pt-20 flex flex-col justify-between overflow-hidden bg-[#090807] isolate"
     >
       {/* ── 1. Mouse-reactive cinematic lighting ────────────────────────── */}
       <div

@@ -16,9 +16,14 @@
 
 html {
   scroll-behavior: smooth;
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-family:
+    "Plus Jakarta Sans",
+    system-ui,
+    -apple-system,
+    sans-serif;
   background-color: #090807;
   color: #f5f1ed;
+  scroll-padding-top: 80px;
 }
 
 body {
@@ -91,11 +96,20 @@ body {
 
 /* Ambient Radial Gradients */
 .radial-glow-hero {
-  background: radial-gradient(circle 480px at center, rgba(255, 107, 44, 0.16) 0%, rgba(154, 52, 18, 0.08) 50%, transparent 80%);
+  background: radial-gradient(
+    circle 480px at center,
+    rgba(255, 107, 44, 0.16) 0%,
+    rgba(154, 52, 18, 0.08) 50%,
+    transparent 80%
+  );
 }
 
 .radial-glow-subtle {
-  background: radial-gradient(circle 350px at center, rgba(255, 107, 44, 0.08) 0%, transparent 70%);
+  background: radial-gradient(
+    circle 350px at center,
+    rgba(255, 107, 44, 0.08) 0%,
+    transparent 70%
+  );
 }
 
 /* Glass Card */
@@ -112,5 +126,5 @@ body {
 
 /* Code & Mono */
 .font-mono-code {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
 }

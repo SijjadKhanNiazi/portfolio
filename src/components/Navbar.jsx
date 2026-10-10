@@ -2,17 +2,17 @@ import { useState, useEffect } from "react";
 import { Menu, X, ArrowUpRight, MessageSquare, Download } from "lucide-react";
 
 const NAV_LINKS = [
-  { label: "Home",     href: "#home" },
-  { label: "About",    href: "#about" },
-  { label: "Skills",   href: "#skills" },
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Services", href: "#services" },
-  { label: "Journey",  href: "#journey" },
-  { label: "Contact",  href: "#contact" },
+  { label: "Journey", href: "#journey" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled]     = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("#home");
 
@@ -21,6 +21,7 @@ export default function Navbar() {
     const onScroll = () => {
       setScrolled(window.scrollY > 20);
     };
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -34,7 +35,7 @@ export default function Navbar() {
           if (e.isIntersecting) setActiveLink(`#${e.target.id}`);
         });
       },
-      { rootMargin: "-35% 0px -55% 0px" }
+      { rootMargin: "-35% 0px -55% 0px" },
     );
     sectionIds.forEach((id) => {
       const el = document.getElementById(id);
@@ -52,18 +53,20 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        scrolled
-          ? "bg-[#090807]/70 backdrop-blur-md border-b border-white/[0.08] py-3"
+      className={`fixed top-0 left-0 right-0 z-[100] w-full transition-all duration-300 ${
+        scrolled || mobileOpen
+          ? "bg-[#090807]/80 backdrop-blur-md border-b border-white/[0.08] py-3"
           : "bg-[#090807]/30 backdrop-blur-sm border-b border-white/[0.04] py-3.5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-8 flex items-center justify-between gap-4">
-
         {/* ── Brand Logo ─────────────────────────────────────────────── */}
         <a
           href="#home"
-          onClick={() => goTo("#home")}
+          onClick={(e) => {
+            e.preventDefault();
+            goTo("#home");
+          }}
           className="flex items-center gap-2.5 shrink-0"
           aria-label="Muhammad Sijjad Khan Home"
         >
@@ -150,13 +153,17 @@ export default function Navbar() {
           className="md:hidden p-2 rounded-xl bg-white/[0.03] border border-white/[0.08] text-slate-300 hover:text-white transition-colors"
           aria-label="Toggle navigation menu"
         >
-          {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          {mobileOpen ? (
+            <X className="w-5 h-5" />
+          ) : (
+            <Menu className="w-5 h-5" />
+          )}
         </button>
       </div>
 
       {/* ── Mobile Dropdown Menu ──────────────────────────────────────── */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-white/[0.08] bg-[#090807]/95 backdrop-blur-xl px-4 py-4 space-y-2 mt-2">
+        <div className="md:hidden border-t border-white/[0.08] bg-[#090807]/95 backdrop-blur-xl px-4 py-4 space-y-2 mt-2 max-h-[calc(100vh-70px)] overflow-y-auto">
           <div className="flex flex-col gap-1">
             {NAV_LINKS.map((link) => {
               const isActive = activeLink === link.href;
