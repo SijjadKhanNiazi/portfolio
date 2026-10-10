@@ -100,7 +100,7 @@ function FloatCard({
         scale: { duration: 0.6, delay: 0.9 + delay },
         y: { duration, repeat: Infinity, ease: "easeInOut", delay },
       }}
-      className={`absolute z-[30] flex items-center gap-2.5 px-3 py-2 rounded-2xl bg-[#0c0a09]/80 border border-white/[0.1] backdrop-blur-xl shadow-[0_15px_40px_rgba(0,0,0,0.7)] ${className}`}
+      className={`absolute z-[5] flex items-center gap-2.5 px-3 py-2 rounded-2xl bg-[#0c0a09]/80 border border-white/[0.1] backdrop-blur-xl shadow-[0_15px_40px_rgba(0,0,0,0.7)] ${className}`}
     >
       <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#ff9a52] to-[#ff6b2c] flex items-center justify-center shadow-[0_0_18px_rgba(255,107,44,0.5)]">
         <Icon className="w-4 h-4 text-slate-950" />
@@ -413,14 +413,14 @@ export default function Hero() {
               icon={Cpu}
               title="~279 req/s"
               sub="Dockerized APIs + Redis"
-              className="top-[18%] -left-1 sm:left-0 lg:-left-6"
+              className="top-[22%] left-0 lg:-left-4"
               duration={5.5}
             />
             <FloatCard
               icon={Award}
               title="Gold Medalist"
-              sub="BS Software Engineering"
-              className="bottom-[20%] -right-1 sm:right-0 lg:-right-4"
+              sub="Software Engineer"
+              className="bottom-[35%] -right-1 sm:right-0 lg:-right-4"
               duration={6.5}
               delay={0.6}
             />
